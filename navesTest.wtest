@@ -26,6 +26,12 @@ describe "Nave de carga" {
 		assert.equals(0, naveVacia.carga())
 	}
 
+	test "propulsar"{
+		naveVacia.propulsar()
+		assert.equals(20000, naveVacia.velocidad())
+
+	}
+
 }
 
 describe "Nave de pasajeros" {
@@ -52,6 +58,10 @@ describe "Nave de pasajeros" {
 	test "recibir amenaza" {
 		naveSinPasajeros.recibirAmenaza()
 		assert.that(naveSinPasajeros.alarma())
+	}
+	test "propulsar"{
+		naveConPasajeros.propulsar()
+		assert.equals(300000, naveConPasajeros.velocidad())
 	}
 
 }
@@ -83,4 +93,12 @@ describe "Nave de combate" {
 		naveEnAtaque.recibirAmenaza()
 		assert.equals("Enemigo encontrado", naveEnAtaque.ultimoMensaje())
 	}
+}
+describe "Nave de residuos radioactivos" {
+  test "recibe amenaza" {
+	const naveCargada = new NaveResiduosRadioactivos (carga = 5000, velocidad = 10000)
+	naveCargada.recibirAmenaza()
+	assert.equals(0, naveCargada.velocidad())
+	
+  }
 }
